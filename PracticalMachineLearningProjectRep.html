@@ -119,7 +119,6 @@ $(document).ready(function () {
 <div id="summary" class="section level1">
 <h1>Summary</h1>
 <p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, our goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants.</p>
-<p>Loading required libraries</p>
 </div>
 <div id="read-the-data" class="section level1">
 <h1>Read the data</h1>
@@ -172,13 +171,13 @@ model</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (5 fold) 
-## Summary of sample sizes: 9421, 9422, 9420, 9420, 9421 
+## Summary of sample sizes: 9421, 9421, 9421, 9421, 9420 
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  Accuracy   Kappa    
-##    2    0.9685800  0.9602289
-##   12    0.9657770  0.9566918
-##   23    0.9557563  0.9440174
+##    2    0.9684950  0.9601250
+##   12    0.9656076  0.9564747
+##   23    0.9585595  0.9475574
 ## 
 ## Accuracy was used to select the optimal model using  the largest value.
 ## The final value used for the model was mtry = 2.</code></pre>
@@ -189,37 +188,37 @@ confusionMatrix(testing$classe, predict)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 2227    3    0    1    1
-##          B   33 1472   11    1    1
-##          C    0   22 1333   10    3
-##          D    1    0   35 1242    8
-##          E    1   11    3   13 1414
+##          A 2222    3    0    6    1
+##          B   25 1488    4    0    1
+##          C    0   26 1337    3    2
+##          D    1    0   43 1240    2
+##          E    1    9    5   16 1411
 ## 
 ## Overall Statistics
-##                                           
-##                Accuracy : 0.9799          
-##                  95% CI : (0.9765, 0.9829)
-##     No Information Rate : 0.2883          
-##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
-##                                           
-##                   Kappa : 0.9745          
-##  Mcnemar's Test P-Value : NA              
+##                                          
+##                Accuracy : 0.9811         
+##                  95% CI : (0.9779, 0.984)
+##     No Information Rate : 0.2866         
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16      
+##                                          
+##                   Kappa : 0.9761         
+##  Mcnemar's Test P-Value : NA             
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9845   0.9761   0.9645   0.9803   0.9909
-## Specificity            0.9991   0.9927   0.9946   0.9933   0.9956
-## Pos Pred Value         0.9978   0.9697   0.9744   0.9658   0.9806
-## Neg Pred Value         0.9938   0.9943   0.9924   0.9962   0.9980
-## Prevalence             0.2883   0.1922   0.1761   0.1615   0.1819
-## Detection Rate         0.2838   0.1876   0.1699   0.1583   0.1802
+## Sensitivity            0.9880   0.9751   0.9626   0.9802   0.9958
+## Specificity            0.9982   0.9953   0.9952   0.9930   0.9952
+## Pos Pred Value         0.9955   0.9802   0.9773   0.9642   0.9785
+## Neg Pred Value         0.9952   0.9940   0.9920   0.9962   0.9991
+## Prevalence             0.2866   0.1945   0.1770   0.1612   0.1806
+## Detection Rate         0.2832   0.1897   0.1704   0.1580   0.1798
 ## Detection Prevalence   0.2845   0.1935   0.1744   0.1639   0.1838
-## Balanced Accuracy      0.9918   0.9844   0.9796   0.9868   0.9933</code></pre>
+## Balanced Accuracy      0.9931   0.9852   0.9789   0.9866   0.9955</code></pre>
 <pre class="r"><code>accuracy &lt;- postResample(predict, testing$classe)
 accuracy</code></pre>
 <pre><code>##  Accuracy     Kappa 
-## 0.9798624 0.9745156</code></pre>
+## 0.9811369 0.9761330</code></pre>
 <p>The estimated accuracy of the model is 97.6% and the estimated out of sample error is 2.4%.</p>
 </div>
 <div id="predictions" class="section level1">

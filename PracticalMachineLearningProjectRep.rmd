@@ -97,14 +97,14 @@ result
 
 # Tree
 
-```{r}
+```{r echo=TRUE}
 treeModel <- rpart(classe ~ ., data=cleantraining, method="class")
 prp(treeModel) 
 ```
 
 # The Question's answer
 
-```{r}
+```{r echo=TRUE}
 pml_write_files = function(x){
   n = length(x)
   for(i in 1:n){
