@@ -119,6 +119,7 @@ $(document).ready(function () {
 <div id="summary" class="section level1">
 <h1>Summary</h1>
 <p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, our goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants.</p>
+<p>Loading required libraries</p>
 </div>
 <div id="read-the-data" class="section level1">
 <h1>Read the data</h1>
@@ -171,13 +172,13 @@ model</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (5 fold) 
-## Summary of sample sizes: 9423, 9420, 9420, 9421, 9420 
+## Summary of sample sizes: 9421, 9422, 9420, 9420, 9421 
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  Accuracy   Kappa    
-##    2    0.9701925  0.9622721
-##   12    0.9678151  0.9592695
-##   23    0.9573693  0.9460540
+##    2    0.9685800  0.9602289
+##   12    0.9657770  0.9566918
+##   23    0.9557563  0.9440174
 ## 
 ## Accuracy was used to select the optimal model using  the largest value.
 ## The final value used for the model was mtry = 2.</code></pre>
@@ -188,37 +189,37 @@ confusionMatrix(testing$classe, predict)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 2228    3    1    0    0
-##          B   40 1467    9    2    0
-##          C    1   19 1335    9    4
-##          D    0    0   46 1227   13
-##          E    0   13    4   18 1407
+##          A 2227    3    0    1    1
+##          B   33 1472   11    1    1
+##          C    0   22 1333   10    3
+##          D    1    0   35 1242    8
+##          E    1   11    3   13 1414
 ## 
 ## Overall Statistics
-##                                         
-##                Accuracy : 0.9768        
-##                  95% CI : (0.9732, 0.98)
-##     No Information Rate : 0.2892        
-##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16     
-##                                         
-##                   Kappa : 0.9706        
-##  Mcnemar's Test P-Value : NA            
+##                                           
+##                Accuracy : 0.9799          
+##                  95% CI : (0.9765, 0.9829)
+##     No Information Rate : 0.2883          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.9745          
+##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9819   0.9767   0.9570   0.9769   0.9881
-## Specificity            0.9993   0.9920   0.9949   0.9910   0.9945
-## Pos Pred Value         0.9982   0.9664   0.9759   0.9541   0.9757
-## Neg Pred Value         0.9927   0.9945   0.9907   0.9956   0.9973
-## Prevalence             0.2892   0.1914   0.1778   0.1601   0.1815
-## Detection Rate         0.2840   0.1870   0.1702   0.1564   0.1793
+## Sensitivity            0.9845   0.9761   0.9645   0.9803   0.9909
+## Specificity            0.9991   0.9927   0.9946   0.9933   0.9956
+## Pos Pred Value         0.9978   0.9697   0.9744   0.9658   0.9806
+## Neg Pred Value         0.9938   0.9943   0.9924   0.9962   0.9980
+## Prevalence             0.2883   0.1922   0.1761   0.1615   0.1819
+## Detection Rate         0.2838   0.1876   0.1699   0.1583   0.1802
 ## Detection Prevalence   0.2845   0.1935   0.1744   0.1639   0.1838
-## Balanced Accuracy      0.9906   0.9843   0.9759   0.9840   0.9913</code></pre>
+## Balanced Accuracy      0.9918   0.9844   0.9796   0.9868   0.9933</code></pre>
 <pre class="r"><code>accuracy &lt;- postResample(predict, testing$classe)
 accuracy</code></pre>
 <pre><code>##  Accuracy     Kappa 
-## 0.9768035 0.9706410</code></pre>
+## 0.9798624 0.9745156</code></pre>
 <p>The estimated accuracy of the model is 97.6% and the estimated out of sample error is 2.4%.</p>
 </div>
 <div id="predictions" class="section level1">
@@ -238,7 +239,7 @@ prp(treeModel) </code></pre>
 <pre class="r"><code>pml_write_files = function(x){
   n = length(x)
   for(i in 1:n){
-    filename = paste0(&quot;problem_id_&quot;,i,&quot;.txt&quot;)
+    filename = paste0(&quot;Prediction_file_&quot;,i,&quot;.txt&quot;)
     write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
   }
 }
@@ -246,7 +247,7 @@ prp(treeModel) </code></pre>
 testing_data &lt;- testing_data[featureset[featureset!='classe']]
 answers &lt;- predict(model, newdata=testing_data)
 answers</code></pre>
-<pre><code>##  [1] B A C A A E D B A A B C B A E E A B B B
+<pre><code>##  [1] B A B A A E D B A A B C B A E E A B B B
 ## Levels: A B C D E</code></pre>
 <pre class="r"><code>pml_write_files(answers)</code></pre>
 </div>
