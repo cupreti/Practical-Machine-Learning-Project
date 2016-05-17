@@ -90,21 +90,20 @@ The estimated accuracy of the model is 97.6% and the estimated out of sample err
 # Predictions
 The model is aplied to the original testing data.
 
-```{r, results='hide'}
+```{r}
 result <- predict(model, training[, -length(names(training))])
-result
 ```  
 
 # Tree
 
-```{r echo=TRUE, eval=TRUE, results='show'}
+```{r}
 treeModel <- rpart(classe ~ ., data=cleantraining, method="class")
 prp(treeModel) 
 ```
 
 # The Question's answer
 
-```{r echo=TRUE, eval=TRUE}
+```{r}
 pml_write_files = function(x){
   n = length(x)
   for(i in 1:n){
