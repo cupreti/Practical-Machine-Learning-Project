@@ -32,7 +32,7 @@ testing_data <- read.csv("pml-testing.csv", na.strings=c("#DIV/0!"," ", "", "NA"
 # Clean the data
 We need to drop columns with NAs, drop highly correlated variables and drop variables with 0 (or approx to 0) variance. The results are hidden as they take a very long space.
 
-```{r, results='hide'}
+```{r}
 str(training_data)
 cleantraining <- training_data[, -which(names(training_data) %in% c("X", "user_name", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp", "new_window", "num_window"))]
 # This drops columns with NAs
@@ -55,7 +55,8 @@ for(i in c(8:ncol(testing_data)-1)) {testing_data[,i] = as.numeric(as.character(
 
 featureset <- colnames(cleantraining[colSums(is.na(cleantraining)) == 0])[-(1:7)]
 modeldata <- cleantraining[featureset]
-featureset #now we have the model data built from our feature set.
+#now we have the model data built from our feature set.
+featureset 
 ```
 
 # Model
